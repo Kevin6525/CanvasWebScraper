@@ -3,3 +3,4 @@ This Python script uses Selenium and web scraping to get all class information f
 
 To use: download Selenium webdriver and download Python file. (Use choco if downloading Selenium webdriver on Windows)
 Run from command line and follow prompts
+Note: This only works for Canvas links at the moment
