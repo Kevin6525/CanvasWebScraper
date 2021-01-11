@@ -33,9 +33,9 @@ passWord = getpass.getpass('Password: ')
 # Use the Canvas link to get to the website
 driver = webdriver.Chrome(PATH)
 driver.get(canvasLink)
-# Wait to make sure everything loads
+
 # Then input the username and password provided in the fields and press the login button
-driver.implicitly_wait(5)
+
 userLogin = driver.find_element_by_name('j_username')
 userLogin.send_keys(userName)
 userPass = driver.find_element_by_name('j_password')
@@ -44,14 +44,14 @@ loginButton = driver.find_element_by_name('_eventId_proceed')
 loginButton.click()
 # Navigate to the calendar webpage in Canvas
 driver.get(canvasLink + "/calendar")
-# Wait for the webpage to load then go to the Agenda tab by clicking the button
-driver.implicitly_wait(5)
+# Give 10 seconds to load webpage before failing
+driver.implicitly_wait(10)
 agendaButton = driver.find_element_by_xpath('//*[@id="agenda"]')
 agendaButton.click()
 # Find the title which would be the current date, we will use this for our output file
 title = driver.find_element_by_class_name('navigation_title')
 summaryFile = open("Month of " + title.text + " Agenda.txt", "w")
-# Allow contents of Agenda to load
+# Give 15 seconds for load time before throwing error
 driver.implicitly_wait(15)
 # Parse through the data and store to lists as WebElements
 agendaDates = driver.find_elements_by_class_name('agenda-day')
